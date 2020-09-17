@@ -4,7 +4,7 @@ FROM python:3.8
 
 # copy the dependencies file to the working directory
 #COPY requirements.in .
-COPY requirements.txt .
+COPY bot_template/requirements.txt .
 COPY config.json .
 
 # install dependencies
@@ -13,7 +13,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # copy the content of the local src directory to the working directory
-COPY src/ /src/.
+COPY bot_template/src /src/.
 #WORKDIR /src
 
 # command to run on container start

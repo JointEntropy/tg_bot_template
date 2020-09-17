@@ -21,7 +21,7 @@ def mention_handler(bot, update, conn):
     response = bot.send_message(
         chat_id=update.effective_chat.id,
         text=f'Add post with chat_id {update.effective_chat.id}'
-             f'\ncontent "{message}" to database'
+             f'\ncontent "{message}"'
              f'\nby user "{update.effective_user.username}"\n'
              'to database',
         parse_mode=ParseMode.HTML,

@@ -1,15 +1,14 @@
 # https://github.com/python-telegram-bot/python-telegram-bot/blob/master/examples/echobot2.py
-from telegram.ext import Updater, CommandHandler, MessageHandler, PicklePersistence, BaseFilter
+from telegram.ext import Updater, MessageHandler, BaseFilter
 from loguru import logger
 from tg import handlers
 import json
-from telegram.ext import CallbackQueryHandler
 
 
 class MessageFilter(BaseFilter):
     def filter(self, message):
         triggers = set(['ещё!', ])
-        message_tokens = set([c.lower() for c in message.text.split(' ')])
+        message_tokens = set([c.lower() for c in (message.text or '').split(' ')])
         if len(triggers & message_tokens):
             return True
         return False
