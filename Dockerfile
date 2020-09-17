@@ -18,4 +18,5 @@ COPY src/ /src/.
 
 # command to run on container start
 #CMD [ "ls", "./src/" ]
+#CMD [ "python", "/src/db/entities.py"]
 CMD [ "python", "/src/runner.py" ]

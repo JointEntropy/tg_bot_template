@@ -2,10 +2,12 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey, Text
 import datetime
 from sqlalchemy.schema import MetaData
-from db.db_utils import engine
+from db.utils import engine
+from common_utils import read_json_dict
+from loguru import logger
 
-
-SCHEMA_NAME = 'tests'
+config = read_json_dict('config.json')
+SCHEMA_NAME = config['postgres']['schema']
 Base = declarative_base(metadata=MetaData(schema=SCHEMA_NAME))
 
 
@@ -24,7 +26,6 @@ class Users(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     telegram_username = Column(String, nullable=False, unique=True, )
     update_ts = Column(TIMESTAMP, default=datetime.datetime.utcnow, nullable=False)
-    theme_id = Column(Integer, ForeignKey('themes.id'), nullable=True)
 
 
 class Scores(Base):
@@ -37,6 +38,7 @@ class Scores(Base):
 
 
 def init_schema():
+    logger.debug('')
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
 

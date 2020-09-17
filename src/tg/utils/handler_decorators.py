@@ -1,5 +1,5 @@
 from loguru import logger
-from db.db_utils import get_session
+from db.utils import get_session
 
 
 def prepare_connection(handler):

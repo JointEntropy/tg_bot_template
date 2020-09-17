@@ -10,6 +10,13 @@ def find_post_by_tg_message(session, tg_message_id):
     return post[0]
 
 
+def list_posts(session):
+    logger.debug('')
+    query = session.query(Posts)
+    post = pd.read_sql(query.statement, session.bind).to_dict(orient='records')
+    return post
+
+
 def get_or_create_user(session, username):
     logger.debug('')
     query = session.query(Users).filter(Users.telegram_username == username)

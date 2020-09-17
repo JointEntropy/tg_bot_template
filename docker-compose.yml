@@ -1,0 +1,20 @@
+version: '3'
+services:
+  sql_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+        - data:/var/lib/postgresql/data/
+        - ./scripts/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+  tg_bot:
+      build: .
+      ports:
+        - "5433:5432"
+      links:
+        - sql_db:postgres
+volumes:
+  data:
+  scripts:

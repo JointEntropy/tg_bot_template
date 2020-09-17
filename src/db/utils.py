@@ -9,10 +9,11 @@ from sqlalchemy.orm import sessionmaker
 with open('config.json', 'r') as f:
     config = json.load(f)['postgres']
 
-engine = create_engine("postgresql://{user}:{password}@{host}/{db}".format(
+engine = create_engine("postgresql://{user}:{password}@{host}:{port}/{db}".format(
     host=config['host'],
     db=config['db'],
     user=config['user'],
+    port=config['port'],
     password=config['password']
 ), client_encoding='utf8')
 Session = sessionmaker(bind=engine)
