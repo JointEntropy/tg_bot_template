@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey
+from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey, Text
 import datetime
 from sqlalchemy.schema import MetaData
 from db.db_utils import engine
@@ -15,6 +15,8 @@ class Posts(Base):
     create_ts = Column(TIMESTAMP, default=datetime.datetime.utcnow)
     tg_message_id = Column(Integer, nullable=False, unique=True)
     chat_id = Column(Integer, nullable=False)
+    post_text = Column(Text, nullable=False)
+    user_id = Column(Text, nullable=False)
 
 
 class Users(Base):

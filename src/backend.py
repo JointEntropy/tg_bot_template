@@ -24,9 +24,12 @@ def get_or_create_user(session, username):
     return user
 
 
-def add_post(session, tg_message_id, chat_id):
+def add_post(session, post_text, tg_message_id, chat_id, user_id):
     logger.debug('')
-    new_post = Posts(tg_message_id=tg_message_id, chat_id=chat_id)
+    new_post = Posts(tg_message_id=tg_message_id,
+                     chat_id=chat_id,
+                     post_text=post_text,
+                     user_id=user_id)
     session.add(new_post)
     session.commit()
     return new_post.id

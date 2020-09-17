@@ -14,6 +14,7 @@ class MessageFilter(BaseFilter):
             return True
         return False
 
+
 class TelegramInterface:
     """
     Интерфейс для телеграм бота.
@@ -50,8 +51,9 @@ class TelegramInterface:
                                                            callback=handlers.mention_handler))
 
     def prepare_commands_handlers(self):
-        self.updater.dispatcher.add_handler(CommandHandler("select_theme", handlers.select_theme))
-        self.updater.dispatcher.add_handler(CallbackQueryHandler(handlers.button_set_theme))
+        pass
+        # self.updater.dispatcher.add_handler(CommandHandler("select_theme", handlers.select_theme))
+        # self.updater.dispatcher.add_handler(CallbackQueryHandler(handlers.button_set_theme))
         # self.updater.dispatcher.add_handler(CallbackQueryHandler(handlers.button_add_score))
 
 
